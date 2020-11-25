@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    height: 100vh;
+}
+.section{
+    min-height: 100%;
+}
+#opening{
+    position: relative;
+    height: 300vh;
+}
+#opening::before{
+    color: white;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../Images/Aryo_Cover2.JPG');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+    filter: brightness(0.45);
+
+}
+#opening-content{
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+}
+
+
+
+/*
+Name, intro text, quick links below
+
+*/
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes fadeUp{
+    from{
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to{
+        opacity: 1;
+        transform: translteY(0%);
+    }
+}
+#opening-text{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 35vh;
+    font-size: 1.3em;
+}
+#name{
+    animation: fadeIn 2s forwards;
+    text-align: center;
+    opacity: 0;
+    margin-bottom: 10vh;
+}
+#intro-blurb{
+    opacity: 0;
+    margin: 0 10%;
+    animation: fadeUp 1s forwards;
+    animation-delay: 1.5s;
+}
+
+#quick-links{
+    margin-top: 10vh;
+    opacity: 0;
+    animation: fadeUp 1s forwards;
+    animation-delay: 1.5s;
+
+    display: flex;
+    justify-content: space-between;
+}
+.quick-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    transition: 0.4s;
+
+}
+.quick-container-noshow{
+    width:100%;
+}
+.quick-container:hover{
+    cursor: pointer;
+    transition: 0.4s;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+}
+.quick-container > p{
+    padding-right: 15px;
+}
+
+#learn-more{
+    opacity: 0;
+    animation: fadeUp 1s forwards;
+    animation-delay: 1.5s;
+    margin-top: 8vh;
+    text-align: center;
+}
+#learn-more:hover{
+    cursor: pointer;
+}
