@@ -118,7 +118,7 @@ Name, intro text, quick links below
     opacity: 0;
     animation: fadeUp 1s forwards;
     animation-delay: 1.5s;
-    margin-top: 8vh;
+    margin-top: 10vh;
     text-align: center;
 }
 #learn-more:hover{

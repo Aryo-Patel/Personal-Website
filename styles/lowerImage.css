@@ -1,0 +1,48 @@
+#programming-language-container{
+    margin-top: 20vh;
+    font-size: 40px;
+    width: 80%;
+    text-align: left;
+}
+#all-languages-switch{
+    position: relative;
+    width: 60px;
+    height: 34px;
+}
+#all-languages-switch input{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+#all-languages-switch >span{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #ccc;
+}
+#extension{
+    padding-right: 3px;
+
+}
+#experience-carousel{
+    margin-top: 20vh;
+}
+#carousel{
+    display: flex;
+}
+.carousel-experience{
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    background-size: cover;
+}
+
+#google{
+    background-image: url('../../Images/Experiences/google.png');
+}
+#upwork{
+    background-image: url('../../Images/Experiences/Upwork.png');
+}
