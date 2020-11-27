@@ -95,3 +95,68 @@ setInterval(() => {
     }
 }, 100)
 
+
+
+/*
+~~~~~~~~~~~~~~~CODE PERTINENT ROTATING CAROUSEL~~~~~~~~~~~
+*/
+
+const experienceDict = {
+    google: 'Google: CSSI intern during the summer of 2020',
+    upwork: 'Upwork: Freelanced for various clients, learning in-demand skills',
+    mozilla: 'Mozilla: Founded a startup during the 8 week long "Fix-The-Internet" Incubator',
+    sloan: 'Sloan School of Management: Performing ML stock market research under Professor Andrew Lo',
+    coursera: 'Coursera: Completed Machine Learning and Algorithm courses to boost my coding proficiency',
+    udemy: 'Udemy: Completed 20+ hour MERN stack course to develop mastery in the stack'
+}
+
+let experiences = document.querySelectorAll('.carousel-experience');
+let carousel = document.getElementById('carousel');
+let assocText = document.getElementById('assoc-text');
+experiences = Array.from(experiences);
+console.log(assocText);
+const ANGLE = 360/experiences.length;
+console.log(ANGLE)
+const RADIUS = 250/Math.tan(ANGLE *0.5 * Math.PI/180);
+
+experiences.forEach((experience, index) => {
+    experience.style.transform = `rotateY(${ANGLE*index}deg) translateZ(${RADIUS}px)`;
+    experience.style.margin ='10px';
+})
+
+// console.log(experiences[0].getBoundingClientRect().width);
+// console.log(experiences[0].style.margin.substring(0,2));
+
+// console.log(carousel);
+// carousel.style.left = `-${experiences[0].getBoundingClientRect().width + 2*experiences[0].style.margin.substring(0,2)}px`;
+
+experiences.forEach((experience, index) => {
+    let currY = experience.style.transform.substring(experience.style.transform.indexOf('(') + 1, experience.style.transform.indexOf('d'));
+    console.log(experience.style.transform);
+    console.log(currY);  
+})
+
+
+setInterval(() => {
+    experiences.forEach(experience => {
+        let currY = experience.style.transform.substring(experience.style.transform.indexOf('(') + 1, experience.style.transform.indexOf('d'));
+        currY = Number(currY);
+        currY += 0.2
+        if(currY >= 360){
+            currY = 0;
+        }
+
+        if(currY > 270 || currY < 90){
+            experience.style.opacity = '1';
+        }
+        else{
+            experience.style.opacity = '0.1';
+        }
+
+        if(currY > 330  || currY < 30){
+            assocText.innerHTML = experienceDict[experience.id];
+        }
+
+        experience.style.transform = `rotateY(${currY}deg) translateZ(${RADIUS}px)`;
+    })
+}, 30)
