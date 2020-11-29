@@ -114,9 +114,9 @@ let experiences = document.querySelectorAll('.carousel-experience');
 let carousel = document.getElementById('carousel');
 let assocText = document.getElementById('assoc-text');
 experiences = Array.from(experiences);
-console.log(assocText);
+
 const ANGLE = 360/experiences.length;
-console.log(ANGLE)
+
 const RADIUS = 250/Math.tan(ANGLE *0.5 * Math.PI/180);
 
 experiences.forEach((experience, index) => {
@@ -132,8 +132,6 @@ experiences.forEach((experience, index) => {
 
 experiences.forEach((experience, index) => {
     let currY = experience.style.transform.substring(experience.style.transform.indexOf('(') + 1, experience.style.transform.indexOf('d'));
-    console.log(experience.style.transform);
-    console.log(currY);  
 })
 
 

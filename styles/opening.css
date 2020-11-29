@@ -13,7 +13,9 @@ body{
 }
 #opening{
     position: relative;
-    height: 300vh;
+    height: auto;
+    padding-bottom: 300px;
+    
 }
 #opening::before{
     color: white;
@@ -29,6 +31,7 @@ body{
     background-repeat: no-repeat;
     background-position: 0% 0%;
     filter: brightness(0.45);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 
 }
 #opening-content{
@@ -69,6 +72,7 @@ Name, intro text, quick links below
     margin-top: 35vh;
     font-size: 1.3em;
 }
+
 #name{
     animation: fadeIn 2s forwards;
     text-align: center;
@@ -110,10 +114,14 @@ Name, intro text, quick links below
     background-color: white;
     color: black;
 }
-.quick-container > p{
+.quick-container > a{
     padding-right: 15px;
+    color: white;
+    text-decoration: none;
 }
-
+.quick-container:hover > a{
+    color: black;
+}
 #learn-more{
     opacity: 0;
     animation: fadeUp 1s forwards;

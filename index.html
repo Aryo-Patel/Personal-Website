@@ -5,7 +5,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <link rel = "stylesheet" type = "text/css" href = "styles/opening.css" />
-        <link rel = "stylesheet" type = "text/css" href = "styles//lowerImage.css" />
+        <link rel = "stylesheet" type = "text/css" href = "styles/lowerImage.css" />
+        <link rel = "stylesheet" type = "text/css" href = "styles/body.css" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     </head>
     <body>
@@ -18,17 +19,17 @@
                     </div>
                     <div id = "quick-links">
                         <div id = "github-container" class = "quick-container">
-                            <p>Github</p>
+                            <a href = "https://github.com/Aryo-Patel" target = "_blank">Github</a>
                             <i class="fab fa-github"></i>
                         </div>
                         <div class = "quick-container-noshow"></div>
                         <div id = "resume-container" class = "quick-container" >
-                            <p>Resume</p>
+                            <a href = "Aryo Resume.pdf" target = "_blank">Resume</a>
                             <i class="fas fa-file-alt"></i>
                         </div>
                         <div class = "quick-container-noshow"></div>
                         <div id = "contact-me-container" class = "quick-container">
-                            <p>Contact me</p>
+                            <a>Contact me</a>
                             <i class="fas fa-comment-alt"></i>
                         </div>
                     </div>
@@ -63,8 +64,29 @@
                 <h1 id = "assoc-text">Placeholder</h1>
             </div>
         </div>
-        <div class = "section"></div>
-        
-        <script src = "app.js"></script>
+        <div id = "body">
+            <!-- <div id  = "nav-bar">
+                <span id = "projects" class = "nav-item">Projects</span>
+                <span id = "research" class = "nav-item">Research</span>
+                <span id = "music" class = "nav-item">Music</span>
+            </div>
+            <div id = "content">
+
+            </div> -->
+        </div>
+
+
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+        <!--Loading JSX-->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <script src = "scripts/react/main.js"></script>
+        <script src="scripts/react/index.js"></script>
+
+        <script src = "scripts/app.js"></script>
     </body>
 </html>
