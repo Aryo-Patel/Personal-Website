@@ -7,6 +7,7 @@
 
 body{
     height: 100vh;
+    overflow-x: hidden;
 }
 .section{
     min-height: 100%;

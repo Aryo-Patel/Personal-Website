@@ -43,7 +43,7 @@ let extension = document.getElementById('extension');
 extension.textContent = '';
 let lock = false;
 
-let chooseNewWord = true;
+let chooseNewWord = false;
 extension.style.borderRight = '4px solid rgb(179, 179, 179)';
 let tickTimer = 0;
 
@@ -55,6 +55,7 @@ let deleteDelay = 0;
 let createNewWordDelay = 0;
 let newWord;
 
+newWord = extensionValues[Math.floor(Math.random() * extensionValues.length)];
 setInterval(() => {
     tickTimer+= 1;
     if(tickTimer == 9){
@@ -63,7 +64,14 @@ setInterval(() => {
     //choose new word when necessary
     if(chooseNewWord){
         createNewWordDelay = 0;
-        newWord = extensionValues[Math.floor(Math.random() * extensionValues.length)];
+        let index = extensionValues.indexOf(newWord);
+        if(index + 1 >= extensionValues.length){
+            index = 0;
+        }
+        else{
+            index += 1;
+        }
+        newWord = extensionValues[index];
         chooseNewWord = false;
     }
 
@@ -158,3 +166,51 @@ setInterval(() => {
         experience.style.transform = `rotateY(${currY}deg) translateZ(${RADIUS}px)`;
     })
 }, 30)
+
+
+/*
+~~~~~~~~~~~~~~~~CODE FOR TRANSITIONING BETWEEN THE CONTENT PAGES HERE
+*/
+
+let content = document.getElementById('content');
+let navItems = Array.from(document.querySelectorAll('.nav-item'));
+$(content).load('projects.html');
+document.getElementById('projects').style.borderBottom = '1px solid black';
+
+document.getElementById('projects').addEventListener('click', e => {
+    $(content).load('projects.html');
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+})
+
+document.getElementById('research').addEventListener('click', e => {
+    $(content).load('research.html');
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+})
+document.getElementById('work').addEventListener('click', e => {
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+    $(content).load('work.html');
+})
+document.getElementById('music').addEventListener('click', e => {
+    $(content).load('music.html');
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+})
+document.getElementById('contact').addEventListener('click', e => {
+    $(content).load('contact.html');
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+})
+
+function navBorderClear(navItems){
+    navItems.forEach(item => {
+        item.style.borderBottom = '';
+    })
+}
+
+//global vars that need to be defined here to execute on page refreshes with animations
+let projectItems;
+let windowCenter;
+
