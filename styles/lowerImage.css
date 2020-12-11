@@ -101,3 +101,8 @@ radius = 207.84
     min-height: 100px; 
     padding-top: 5px;
 }
+@media only screen and (max-device-width : 1024px)  { 
+    #assoc-text{
+       min-height: 130px;
+    }
+}

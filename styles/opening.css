@@ -82,6 +82,11 @@ Name, intro text, quick links below
     margin-top: 35vh;
     font-size: 20px;
 }
+@media only screen and (max-device-width : 1024px)  { 
+    #opening-text{
+       margin-top: 15vh;
+    }
+}
 
 #name{
     animation: fadeIn 2s forwards;
@@ -95,12 +100,18 @@ Name, intro text, quick links below
     animation: fadeUp 1s forwards;
     animation-delay: 1.5s;
 }
+@media only screen and (max-device-width : 1024px)  { 
+    #intro-blurb p{
+       text-align: center;
+    }
+}
 
 #quick-links{
     margin-top: 10vh;
     opacity: 0;
     animation: fadeUp 1s forwards;
     animation-delay: 1.5s;
+    font-size: 20px;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -129,7 +140,18 @@ Name, intro text, quick links below
 .quick-container > a{
     padding-right: 15px;
     color: white;
+    font-size: 25px;
     text-decoration: none;
+}
+@media only screen and (max-device-width : 1024px)  { 
+    #quick-links{
+       grid-template-rows: 1fr 1fr;
+       row-gap: 80px;
+       grid-template-columns: 1fr 1fr;
+    }
+    .quick-container > a{
+        font-size: 50px;
+    }
 }
 .quick-container:hover > a{
     /* color: black; */
