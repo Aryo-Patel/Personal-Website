@@ -121,9 +121,10 @@ Name, intro text, quick links below
 .quick-container:hover{
     cursor: pointer;
     transition: 0.4s;
-    border-radius: 50%;
+    
+    /* border-radius: 50%;
     background-color: white;
-    color: black;
+    color: black; */
 }
 .quick-container > a{
     padding-right: 15px;
@@ -131,7 +132,8 @@ Name, intro text, quick links below
     text-decoration: none;
 }
 .quick-container:hover > a{
-    color: black;
+    /* color: black; */
+    border-bottom: 1px solid white;
 }
 #learn-more{
     opacity: 0;
