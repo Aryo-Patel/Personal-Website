@@ -210,6 +210,17 @@ function navBorderClear(navItems){
     })
 }
 
+/*
+~~~~~CODE PERTINENT TO 
+*/
+let contactMeElements = Array.from(document.querySelectorAll('.contact-me-link'));
+contactMeElements.forEach(contactMe => {
+    contactMe.addEventListener('click', e => {
+        $(content).load('contact.html');
+        navBorderClear(navItems);
+        document.getElementById('contact').style.borderBottom = '1px solid black';
+    })
+})
 //global vars that need to be defined here to execute on page refreshes with animations
 let projectItems;
 let windowCenter;

@@ -3,10 +3,14 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    
 }
-
+html{
+    scroll-behavior: smooth !important;
+    overflow-x: hidden;
+}
 body{
-    height: 100vh;
+    height: 100%;
     overflow-x: hidden;
 }
 .section{
@@ -34,6 +38,11 @@ body{
     filter: brightness(0.45);
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 
+}
+@media only screen and (max-device-width : 1024px)  { 
+    #opening::before{
+        background-position: 75% 0%;
+    }
 }
 #opening-content{
     position: relative;
@@ -71,7 +80,7 @@ Name, intro text, quick links below
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 35vh;
-    font-size: 1.3em;
+    font-size: 20px;
 }
 
 #name{
@@ -93,7 +102,8 @@ Name, intro text, quick links below
     animation: fadeUp 1s forwards;
     animation-delay: 1.5s;
 
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: space-between;
 }
 .quick-container{
@@ -125,11 +135,16 @@ Name, intro text, quick links below
 }
 #learn-more{
     opacity: 0;
+    margin-top: 100px;
     animation: fadeUp 1s forwards;
     animation-delay: 1.5s;
-    margin-top: 10vh;
     text-align: center;
 }
 #learn-more:hover{
     cursor: pointer;
+}
+#learn-more a{
+    color: white;
+    display: block;
+    text-decoration: none;
 }
