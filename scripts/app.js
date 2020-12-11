@@ -193,11 +193,11 @@ document.getElementById('work').addEventListener('click', e => {
     e.target.style.borderBottom = '1px solid black';
     $(content).load('work.html');
 })
-document.getElementById('music').addEventListener('click', e => {
-    $(content).load('music.html');
-    navBorderClear(navItems);
-    e.target.style.borderBottom = '1px solid black';
-})
+// document.getElementById('music').addEventListener('click', e => {
+//     $(content).load('music.html');
+//     navBorderClear(navItems);
+//     e.target.style.borderBottom = '1px solid black';
+// })
 document.getElementById('contact').addEventListener('click', e => {
     $(content).load('contact.html');
     navBorderClear(navItems);
