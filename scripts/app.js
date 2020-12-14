@@ -166,8 +166,68 @@ setInterval(() => {
         experience.style.transform = `rotateY(${currY}deg) translateZ(${RADIUS}px)`;
     })
 }, 30)
+/*
+~~~~~~~~~~~~~~~CODE FOR DECIDING IN WHICH WAY THE CONTENT PAGES NAV BAR WILL BE DISPLAYED
+*/
+let screenWidth = window.innerWidth > 0 ? window.innerWidth : screenWidth;
+
+if(screenWidth < 1024){
+    document.getElementById('small-navbar').style.display = 'grid';
+    document.getElementById('nav-bar').style.display = 'none';
+}
+else{
+    document.getElementById('small-navbar').style.display = 'none';
+    document.getElementById('nav-bar').style.display = 'flex';
+}
+
+window.addEventListener('resize', e => {
+    screenWidth = window.innerWidth > 0 ? window.innerWidth : screenWidth;
+
+    if(screenWidth < 1024){
+        document.getElementById('small-navbar').style.display = 'grid';
+        document.getElementById('nav-bar').style.display = 'none';
+    }
+    else{
+        document.getElementById('small-navbar').style.display = 'none';
+        document.getElementById('nav-bar').style.display = 'flex';
+    }
+});
 
 
+/*
+~~~~~~~~~~~CODE PERTINENT FOR GOVERNING THE BEHAVIOR OF THE SMALL SCREEN MODE
+*/
+let expander = document.getElementById('expander');
+let smallLinks = document.getElementById('small-links');
+let linkArea = document.getElementById('link-area');
+var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+let viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+let desiredCenter = viewportHeight/2 + scrollTop
+expander.addEventListener('click', e => {
+    //find height were the midpoint
+    smallLinks.style.width = '100%';
+    linkArea.style.opacity = 1;
+    linkArea.style.pointerEvents = 'all';
+    disableScroll()
+})
+
+smallLinks.addEventListener('click', e => {
+    smallLinks.style.width = '0%';
+    linkArea.style.opacity = 0;
+    linkArea.style.pointerEvents = 'none';
+    enableScroll();
+})
+
+function disableScroll(){
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){
+        window.scrollTo(x, y);
+    };
+}
+function enableScroll(){
+    window.onscroll = function(){};
+}
 /*
 ~~~~~~~~~~~~~~~~CODE FOR TRANSITIONING BETWEEN THE CONTENT PAGES HERE
 */
@@ -176,11 +236,19 @@ let content = document.getElementById('content');
 let navItems = Array.from(document.querySelectorAll('.nav-item'));
 $(content).load('projects.html');
 document.getElementById('projects').style.borderBottom = '1px solid black';
+document.getElementById('projects-small').style.borderBottom = '1px solid black';
+document.getElementById('variable-link').textContent = 'Projects';
 
 document.getElementById('projects').addEventListener('click', e => {
     $(content).load('projects.html');
     navBorderClear(navItems);
     e.target.style.borderBottom = '1px solid black';
+})
+document.getElementById('projects-small').addEventListener('click', e => {
+    $(content).load('projects.html');
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+    document.getElementById('variable-link').textContent = 'Projects';
 })
 
 document.getElementById('research').addEventListener('click', e => {
@@ -188,9 +256,21 @@ document.getElementById('research').addEventListener('click', e => {
     navBorderClear(navItems);
     e.target.style.borderBottom = '1px solid black';
 })
+document.getElementById('research-small').addEventListener('click', e => {
+    $(content).load('research.html');
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+    document.getElementById('variable-link').textContent = 'Research';
+})
 document.getElementById('work').addEventListener('click', e => {
     navBorderClear(navItems);
     e.target.style.borderBottom = '1px solid black';
+    $(content).load('work.html');
+})
+document.getElementById('work-small').addEventListener('click', e => {
+    navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+    document.getElementById('variable-link').textContent = 'Work Experience';
     $(content).load('work.html');
 })
 // document.getElementById('music').addEventListener('click', e => {
@@ -198,9 +278,21 @@ document.getElementById('work').addEventListener('click', e => {
 //     navBorderClear(navItems);
 //     e.target.style.borderBottom = '1px solid black';
 // })
+// document.getElementById('music-small').addEventListener('click', e => {
+//     $(content).load('music.html');
+//     document.getElementById('variable-link').textContent = 'Music';
+//     navBorderClear(navItems);
+//     e.target.style.borderBottom = '1px solid black';
+// })
 document.getElementById('contact').addEventListener('click', e => {
     $(content).load('contact.html');
     navBorderClear(navItems);
+    e.target.style.borderBottom = '1px solid black';
+})
+document.getElementById('contact-small').addEventListener('click', e => {
+    $(content).load('contact.html');
+    navBorderClear(navItems);
+    document.getElementById('variable-link').textContent = 'Contact Me';
     e.target.style.borderBottom = '1px solid black';
 })
 
@@ -211,7 +303,7 @@ function navBorderClear(navItems){
 }
 
 /*
-~~~~~CODE PERTINENT TO 
+~~~~~CODE PERTINENT TO MOVING TO THE CONTACT ME LINK
 */
 let contactMeElements = Array.from(document.querySelectorAll('.contact-me-link'));
 contactMeElements.forEach(contactMe => {
