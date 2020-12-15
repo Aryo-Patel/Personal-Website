@@ -27,7 +27,29 @@ window.addEventListener('scroll', e => {
 
 checkScroll('#opening::before');
 
+/*
+~~~~~~~~~~~~~~CODE PERTINENT TO SETTING THE OPENING TEXT CONTENT TO COVER AT MOST THE SPACE AVAILABLE ON THE SCREEN 
+*/
+//console.log(window.outerHeight);
+function setOpeningHeight(){
+    let openingText = document.getElementById('opening-text');
+    let screenHeight = openingText.getBoundingClientRect().height;
+    
+    let marginTop = window.innerHeight - screenHeight - 15;
+    if(marginTop < 0){
+        marginTop = 0;
+    }
+    openingText.style.marginTop = `${marginTop}px`;
+}
 
+
+window.addEventListener('resize', e => {
+    setOpeningHeight();
+})
+//console.log(openingText.getBoundingClientRect());
+
+
+setOpeningHeight();
 /*
 ~~~~~~~~~~~CODE PERTINENT TO GETTING THE "FLUENT IN" COMPONENT WORKING~~~~~~
 */
@@ -208,6 +230,9 @@ expander.addEventListener('click', e => {
     smallLinks.style.width = '100%';
     linkArea.style.opacity = 1;
     linkArea.style.pointerEvents = 'all';
+    // console.log(linkArea.getBoundingClientRect());
+    // let scrollY = (linkArea.getBoundingClientRect().top + linkArea.getBoundingClientRect().bottom)/2
+    // window.scrollY  = scrollY;
     disableScroll()
 })
 

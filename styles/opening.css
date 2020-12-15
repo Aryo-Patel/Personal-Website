@@ -32,6 +32,9 @@ body{
     height: 100%;
     background-image: url('../Images/Aryo_Cover2.JPG');
     background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: 0% 0%;
