@@ -36,8 +36,7 @@ function setMobile(targetElem){
     }
     cssClass.style.backgroundImage = `none`;
     document.getElementById('opening').style.backgroundColor = 'grey';
-
-    document.getElementById('opening').style.linearGra
+    document.getElementById('opening').style.backgroundAttachment = 'scroll';
 }
 if(!isMobile){
     window.addEventListener('scroll', e => {
