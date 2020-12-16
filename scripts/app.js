@@ -330,12 +330,19 @@ function navBorderClear(navItems){
 /*
 ~~~~~CODE PERTINENT TO MOVING TO THE CONTACT ME LINK
 */
+function scrollToContact(){
+    let bodyPos = document.getElementById('body').getBoundingClientRect();
+    window.scrollTo({top: window.pageYOffset + bodyPos.top, behavior: 'smooth'});
+    console.log(bodyPos);
+}
 let contactMeElements = Array.from(document.querySelectorAll('.contact-me-link'));
 contactMeElements.forEach(contactMe => {
     contactMe.addEventListener('click', e => {
         $(content).load('contact.html');
         navBorderClear(navItems);
         document.getElementById('contact').style.borderBottom = '1px solid black';
+        document.getElementById('contact-small').style.borderBottom = '1px solid black';
+        scrollToContact();
     })
 })
 //global vars that need to be defined here to execute on page refreshes with animations
