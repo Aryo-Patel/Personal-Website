@@ -27,7 +27,7 @@
     position: absolute;
     z-index: 10;
     width: 0%;
-    height: 400vh;
+    height: 200vh;
     overflow-y: hidden;
     left: 0;
     transform: translateY(-50%);
@@ -41,10 +41,16 @@
     opacity: 0;
     pointer-events: none;
     flex-direction: column;
-    justify-content: center;
+    justify-content:start;
     align-items: center;
     background-color: #eeeeee;
     padding: 30px;
+}
+#link-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .nav-item{
     font-size: 28px;

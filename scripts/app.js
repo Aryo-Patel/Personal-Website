@@ -1,4 +1,8 @@
+let screenWidth = window.innerWidth > 0 ? window.innerWidth : screenWidth;
 
+document.addEventListener('resize', e =>{
+    screenWidth = window.innerWidth > 0 ? window.innerWidth : screenWidth;
+})
 /*
 ~~~~~~~~~~CODE PERTINENT TO GETTING THE INTRO BACKGROUND IMAGE TO AUTO SCROLL IF IT HAS ROOM TO SCROLL~~~~~~~~
 */
@@ -17,7 +21,13 @@ function checkScroll(targetElem){
             cssClass = document.styleSheets[1].cssRules[i];
         }
     }
-    cssClass.style.backgroundPosition = `0% ${percentScroll}%`;
+    if(screenWidth > 1024){
+        cssClass.style.backgroundPosition = `0% ${percentScroll}%`;
+    }
+    else{
+        cssClass.style.backgroundPosition = `75% ${percentScroll}%`;
+    }
+
 }
 
 window.addEventListener('scroll', e => {
@@ -26,6 +36,7 @@ window.addEventListener('scroll', e => {
 })
 
 checkScroll('#opening::before');
+
 
 /*
 ~~~~~~~~~~~~~~CODE PERTINENT TO SETTING THE OPENING TEXT CONTENT TO COVER AT MOST THE SPACE AVAILABLE ON THE SCREEN 
@@ -76,6 +87,14 @@ const extensionValues = ['HTML', 'CSS', 'JavaScript', 'NodeJS', 'Python', 'Java'
 let deleteDelay = 0;
 let createNewWordDelay = 0;
 let newWord;
+
+if (screenWidth < 1024){
+    let programmingContainer = document.getElementById('programming-language-container');
+    programmingContainer.style.textAlign = 'center';
+    let baseWord = document.getElementById('base-word');
+    let br = document.createElement('br');
+    baseWord.after(br);
+}
 
 newWord = extensionValues[Math.floor(Math.random() * extensionValues.length)];
 setInterval(() => {
@@ -191,7 +210,7 @@ setInterval(() => {
 /*
 ~~~~~~~~~~~~~~~CODE FOR DECIDING IN WHICH WAY THE CONTENT PAGES NAV BAR WILL BE DISPLAYED
 */
-let screenWidth = window.innerWidth > 0 ? window.innerWidth : screenWidth;
+
 
 if(screenWidth < 1024){
     document.getElementById('small-navbar').style.display = 'grid';
@@ -222,14 +241,24 @@ window.addEventListener('resize', e => {
 let expander = document.getElementById('expander');
 let smallLinks = document.getElementById('small-links');
 let linkArea = document.getElementById('link-area');
+let linkContainer = document.getElementById('link-container');
 var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+document.addEventListener('scroll', e => {
+    scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+})
 let viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-let desiredCenter = viewportHeight/2 + scrollTop
+let desiredCenter = viewportHeight/2 + scrollTop;
+
 expander.addEventListener('click', e => {
     //find height were the midpoint
     smallLinks.style.width = '100%';
     linkArea.style.opacity = 1;
     linkArea.style.pointerEvents = 'all';
+    //console.log(scrollTop);
+    console.log(linkContainer.getBoundingClientRect().height);
+    let marginAmount = viewportHeight/2 - linkArea.getBoundingClientRect().top - linkContainer.getBoundingClientRect().height/2;
+    linkContainer.style.marginTop = marginAmount + 'px';
     // console.log(linkArea.getBoundingClientRect());
     // let scrollY = (linkArea.getBoundingClientRect().top + linkArea.getBoundingClientRect().bottom)/2
     // window.scrollY  = scrollY;
@@ -253,6 +282,7 @@ function disableScroll(){
 function enableScroll(){
     window.onscroll = function(){};
 }
+
 /*
 ~~~~~~~~~~~~~~~~CODE FOR TRANSITIONING BETWEEN THE CONTENT PAGES HERE
 */
