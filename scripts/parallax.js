@@ -1,0 +1,119 @@
+'use strict';
+
+//Many thanks to marrio-h for creating universal-parallax, the inspiration for this file
+
+let windowHeight = window.innerHeight, windowHeightExtra = 0;
+
+let safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent), mobile = /Mobi/.test(navigator.userAgent);
+
+//console.log(navigator.userAgent);
+
+if (safari && !mobile){
+    windowHeightExtra = window.outerHeight - window.innerHeight;
+}
+
+if(mobile){
+    console.log('triggered');
+    windowHeight = window.screen.availHeight;
+    windowHeightExtra = (window.screen.availHeight-window.innerHeight)/2;
+}
+
+let positionParallax = function positionParallax(container, speed, parallax, elem){
+    let bgScroll = container.top / speed - windowHeightExtra;
+
+    parallax[elem].style.top = bgScroll + 'px';
+}
+
+let animateParallax = function animateParallax(parallax, speed){
+    for(let i = 0; parallax.length > i; i++){
+        let container = parallax[i].parentElement.parentElement.getBoundingClientRect();
+
+        if(container.top + container.height >= 0 && container.top <= windowHeight){
+            positionParallax(container, speed, parallax, i);
+        }
+    }
+}
+
+let calculateHeight = function calculateHeight(parallax, speed){
+    for(let i = 0; parallax.length > i; i++){
+        let container = parallax[i].parentElement.parentElement.getBoundingClientRect();
+
+        let containerTop = parallax[i].parentElement.parentElement.offsetTop;
+
+        let elemOffsetTop = (windowHeight - container.height)/2;
+
+        var bgHeight = windowHeight > container.height + containerTop ? container.height + containerTop - containerTop / speed : container.height + (elemOffsetTop - elemOffsetTop / speed) * 2;
+
+        parallax[i].style.height = bgHeight + windowHeightExtra*2 + 'px';
+        positionParallax(container, speed, parallax, i);
+    }
+}
+
+let universalParallax = function universalParallax(){
+    let up  =function up(parallax, speed){
+        if (speed < 1){
+            speed = 1;
+        }
+
+        calculateHeight(parallax, speed);
+
+        if(!mobile){
+            window.addEventListener('resize', function() {
+                windowHeight = window.innerHeight;
+                calculateHeight(parallax, speed);
+            });
+        }
+
+        window.addEventListener('scroll', function(){
+            animateParallax(parallax, speed);
+        });
+    };
+
+    this.init = function(param){
+        if(typeof param === 'undefined'){
+            param = {}
+        }
+
+        param = {
+            peed: typeof param.speed !== 'undefined' ? param.speed : 1.5,
+			className: typeof param.className !== 'undefined' ? param.className : 'parallax'
+        }
+
+        let parallax = document.getElementsByClassName(param.className);
+
+        for(let i = 0; parallax.length > i; i++){
+
+            let wrapper = document.createElement('div');
+
+            parallax[i].parentNode.insertBefore(wrapper, parallax[i]);
+
+            wrapper.appendChild(parallax[i]);
+
+            let parallaxContainer = parallax[i].parentElement;
+
+            parallaxContainer.className += 'parallax__container';
+
+            if (window.getComputedStyle(parallaxContainer.parentElement, null).getPropertyValue('position') !== 'relative') {
+				parallaxContainer.parentElement.style.position = 'relative';
+            }
+            let imgData = parallax[i].dataset.parallaxImage;
+            if (typeof imgData !== 'undefined') {
+				parallax[i].style.backgroundImage = 'url(' + imgData + ')';
+				// if no other class than .parallax is specified, add CSS
+				if (parallax[i].classList.length === 1 && parallax[i].classList[0] === 'parallax') {
+					parallax[i].style.backgroundRepeat = 'no-repeat';
+					parallax[i].style.backgroundPosition = 'center';
+					parallax[i].style.backgroundSize = 'cover';
+				}
+			}
+        };
+
+        document.addEventListener('readystatechange', function(e){
+            if(e.target.readyState === 'complete'){
+                up(parallax, param.speed);
+            }
+        })
+    }
+}
+
+new universalParallax().init();
