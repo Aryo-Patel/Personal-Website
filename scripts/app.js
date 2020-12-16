@@ -11,6 +11,17 @@ console.log(isMobile);
 */
 let openingImage = document.getElementById('opening');
 
+
+
+/*
+background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+*/
 function checkScroll(targetElem){
     let currPos = window.pageYOffset + window.innerHeight;
     let scrollMax = openingImage.getBoundingClientRect().height;
@@ -25,6 +36,10 @@ function checkScroll(targetElem){
         }
     }
     cssClass.style.backgroundPosition = `0% ${percentScroll}%`;
+    cssClass.style.backgroundSize = `cover`;
+    cssClass.style.backgroundAttachment = 'fixed';
+    cssClass.style.backgroundRepeat = 'no-repeat';
+
 }
 function setMobile(targetElem){
     document.getElementById('mobile-notification').style.display= 'block';
